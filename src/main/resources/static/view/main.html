@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+    <!-- Favicons -->
+    <link rel="stylesheet" href="js/lib/alertifyjs/css/themes/default.css">
+    <link rel="stylesheet" href="js/lib/alertifyjs/css/alertify.css">
+
+    <title>
+        Fanavard Notes!
+    </title>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="js/lib/material-kit-html-v2.0.2/BS4/assets/css/material-kit.css?v=2.0.2">
+    <!-- Documentation extras -->
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="js/lib/material-kit-html-v2.0.2/BS4/assets/assets-for-demo/demo.css" rel="stylesheet"/>
+    <script src="js/lib/ejs.min.js"></script>
+
+    <!-- iframe removal -->
+</head>
+
+<body class="profile-page" style="background-color:#c8c8c8">
+
+<nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg " color-on-scroll="100"
+     id="sectionsNav">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="#">Fanavard Notes </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" id="username_container">
+                        <i class="material-icons">account_circle</i> Welcome
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                        <a href="/logout"
+                           class="dropdown-item">
+                            <i class="material-icons">exit_to_app</i> Logout
+                        </a>
+                        <a href="/register.xhtml" class="dropdown-item">
+                            <i class="material-icons">layers</i> Register new user
+                        </a>
+                    </div>
+                </li>
+
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <i class="material-icons">apps</i> Agile
+                        <div class="ripple-container"></div>
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                        <a href="https://gitlab.com/bmd007/fanavard" class="dropdown-item">
+                            <i class="material-icons">layers</i> Gitlab Repo
+                        </a>
+                        <a href="https://mm7amini.kanbantool.com/b/409743-fanavard-q2" class="dropdown-item">
+                            <i class="material-icons">content_paste</i> Scrum Board
+                        </a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom"
+                       href="https://twitter.com/" target="_blank"
+                       data-original-title="Follow us on Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom"
+                       href="https://www.facebook.com/" target="_blank"
+                       data-original-title="Like us on Facebook">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom"
+                       href="https://www.instagram.com/" target="_blank"
+                       data-original-title="Follow us on Instagram">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="page-header header-filter" data-parallax="true"
+     style="background-image: url('js/lib/material-kit-html-v2.0.2/BS4/assets/img/kit/note.jpg');"></div>
+<div class="main main-raised">
+    <div class="profile-content" id="main_container" style="background-color: #ebebeb">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="profile-tabs">
+                        <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                            <li class="nav-item nav_scroller">
+                                <a class="nav-link active" href="#addNote" role="tab" data-toggle="tab"
+                                   id="add_note_tab_header">
+                                    <i class="material-icons">library_add</i> Add Note
+                                </a>
+                            </li>
+                            <li class="nav-item nav_scroller">
+                                <a class="nav-link" href="#notes" role="tab" data-toggle="tab" id="all-notes-tab">
+                                    <i class="material-icons">note</i> All Notes
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active text-center gallery" id="addNote">
+                    <div class="row">
+                        <div class="col-md-7 ml-auto mr-auto">
+                            <div class="card card-nav-tabs" id="add-note-card">
+                                <div class="card-header card-header-primary">
+                                    <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                                    <div class="nav-tabs-navigation">
+                                        <div class="nav-tabs-wrapper">
+                                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active show" href="#note_form" data-toggle="tab">
+                                                        <i class="material-icons">chat</i> Note
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content text-center">
+                                        <div class="tab-pane active show" id="note_form">
+                                            <div class="col-lg-12 col-sm-12">
+                                                <div class="form-group bmd-form-group">
+                                                    <label for="new_note_label" class="bmd-label-floating"
+                                                           style="left: 0">Note
+                                                        Label</label>
+                                                    <input type="text" class="form-control" id="new_note_label">
+                                                    <span class="bmd-help">Enter a label for your note!</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12">
+                                                <div class="form-group bmd-form-group">
+                                                    <label for="new_note_text" class="bmd-label-floating"
+                                                           style="left: 0">Note
+                                                        Text</label>
+                                                    <textarea class="form-control" id="new_note_text"
+                                                              rows="3"></textarea>
+                                                    <span class="bmd-help">And here, your note!</span>
+                                                </div>
+                                            </div>
+
+
+                                            <button class="btn btn-primary" id="note_save" disabled> save
+                                                <div class="ripple-container"></div>
+                                            </button>
+                                            <button class="btn btn-primary" id="note_discard">discard
+                                                <div class="ripple-container"></div>
+                                            </button>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane text-center gallery" id="notes">
+                    <div class="row">
+                        <div class="col-md-7 ml-auto mr-auto" id="all_notes_container">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer ">
+    <div class="container">
+        <nav class="pull-left">
+            <ul>
+                <li>
+
+                    <a href="https://fanavard.com/">
+                        Thanks for Fanavard
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright pull-right">
+            &copy;
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            , made with <i class="material-icons">favorite</i> by
+            Mohammad Mahdi Amini & Ahmad Jahanbin
+        </div>
+    </div>
+</footer>
+
+
+<div id="template_container" style="display:none;">
+    <div id="template1_container">
+        <div id="test_temp">
+            <%= test %>
+        </div>
+    </div>
+
+    <div id="note_card_template_owner">
+        <div class="card card-nav-tabs note-card" id="note_card<%= note_id%>" data-note-id="<%= note_id %>">
+            <div class="card-header card-header-primary">
+                <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li class="nav-item">
+                                <a class="nav-link edit-enable" href="#edit_link<%= note_id%>" data-toggle="tab">
+                                    <i class="material-icons">chat</i> Edit
+                                    <div class="ripple-container"></div>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="#coll_link<%= note_id%>" data-toggle="tab"
+                                   onclick="getCollabs(this)" data-noteId="<%= note_id%>">
+                                    <i class="material-icons">face</i> Collaborators
+                                    <div class="ripple-container"></div>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+
+                                <!--<button class="btn btn-block  btn-primary " data-toggle="modal" data-target="#myModal">-->
+                                <!--<i class="material-icons">library_books</i> Classic-->
+                                <!--</button>-->
+
+                                <a class="nav-link" href="#del_link<%= note_id%>" data-toggle="modal"
+                                   data-target="#myModal">
+                                    <i class="material-icons">delete_forever</i> Delete
+                                    <div class="ripple-container"></div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="tab-content text-center">
+                    <div class="tab-pane active show" id="edit_link<%= note_id%>"><p></p>
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group bmd-form-group">
+                                <input class="form-control note_label" id="note_label<%= note_id%>" type="text"
+                                       data-noteId="<%=note_id%>">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group bmd-form-group">
+
+                                <textarea class="form-control note_text" id="note_text<%= note_id%>"
+                                          rows="3" data-noteId="<%=note_id%>"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="coll_link<%= note_id%>">
+                        <ul class="list-group list-group-flush" id="note_collab_container<%= note_id%>">
+
+
+                        </ul>
+                        <button class="btn btn-primary toggle-people-modal"
+                                data-toggle="modal"
+                                data-target="#people-modal" data-noteId="<%= note_id %>"> Add
+                            <div class=" ripple-container">
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="note_card_template">
+        <div class="card card-nav-tabs note-card" id="note_card<%= note_id%>" data-note-id="<%= note_id %>">
+            <div class="card-header card-header-primary">
+                <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                        <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li class="nav-item">
+                                <a class="nav-link edit-enable" href="#edit_link<%= note_id%>" data-toggle="tab">
+                                    <i class="material-icons">chat</i> Edit
+                                    <div class="ripple-container"></div>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link leave_collab" href="#leave_collab_link<%= note_id%>" data-toggle="modal"
+                                   data-target="#modal_leave_collab" data-noteId="<%=note_id%>">
+                                    <i class="material-icons">delete_forever</i> Leave Collaboration
+                                    <div class="ripple-container"></div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="tab-content text-center">
+                    <div class="tab-pane active show" id="edit_link<%= note_id%>"><p></p>
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group bmd-form-group">
+                                <input class="form-control note_label" id="note_label<%= note_id%>" type="text"
+                                       data-noteId="<%=note_id%>">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group bmd-form-group">
+
+                                <textarea class="form-control note_text" id="note_text<%= note_id%>"
+                                          rows="3" data-noteId="<%=note_id%>"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="coll_link<%= note_id%>">
+                        <ul class="list-group list-group-flush" id="note_collab_container<%= note_id%>">
+
+
+                        </ul>
+                        <button class="btn btn-primary toggle-people-modal"
+                                data-toggle="modal"
+                                data-target="#people-modal" data-noteId="<%= note_id %>"> Add
+                            <div class=" ripple-container">
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="person-template">
+        <li class="list-group-item" style="padding-bottom: 0;margin-bottom: 0" data-phoneNumber="<%= phone %>">
+
+            <!--<a href="#" style="margin-right: 0;margin-left: auto" ><i-->
+            <!--class="material-icons">clear</i></a>-->
+
+            <div class="form-check">
+                <label class="form-check-label">
+                    <b class="card-title"><%= name%></b>
+                    <%= email %>
+                    <input class="form-check-input people-item" type="checkbox" value=""
+                           data-phoneNumber="<%= phone %>" data-name="<%=name%>" data-email="<%=email%>">
+                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                </label>
+            </div>
+        </li>
+    </div>
+
+    <div id="collab_item_template">
+        <li class="list-group-item" style="padding-bottom: 0;margin-bottom: 0">
+            <h5 class="card-title"><%= name %></h5>
+            <p class="card-text"
+               style="margin-top: auto;margin-bottom: auto">
+                <%= email %></p>
+            <a class="remove-person" href="#" style="margin-right: 0;margin-left: auto"
+               data-personPhoneNum="<%= phoneNumber %>"><i
+                    class="material-icons">clear</i></a>
+        </li>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are sure want to delete this note?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>This operation can't be undone.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-link" data-dismiss="modal" id="confirm_remove_note">
+                    Remove
+                </button>
+                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_leave_collab" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are sure want to leave this note collaboration?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>This operation can't be undone.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-link" data-dismiss="modal" id="confirm_leave_note">
+                    Leave This Note
+                </button>
+                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="people-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="max-width: 700px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Pick up note collaborators</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+            <div class="modal-body" id="people-list-container" style="overflow-y: scroll">
+                <ul class="list-group list-group-flush" id="modal-all-people-container">
+                </ul>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-link" data-dismiss="modal" id="add-selected-person">Add
+                    Selected
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--   Core JS Files   -->
+<script src="js/lib/jquery-3.3.1.js"></script>
+<script src="js/lib/material-kit-html-v2.0.2/BS4/assets/js/core/popper.min.js"></script>
+<script src="js/lib/material-kit-html-v2.0.2/BS4/assets/js/bootstrap-material-design.js"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
+<script src="js/lib/material-kit-html-v2.0.2/BS4/assets/js/plugins/moment.min.js"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script src="js/lib/material-kit-html-v2.0.2/BS4/assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+<!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="js/lib/material-kit-html-v2.0.2/BS4/assets/js/plugins/nouislider.min.js"></script>
+<!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<script src="js/lib/material-kit-html-v2.0.2/BS4/assets/js/material-kit.js?v=2.0.2"></script>
+<!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
+<script src="js/lib/material-kit-html-v2.0.2/BS4/assets/assets-for-demo/js/material-kit-demo.js"></script>
+<!-- alertify -->
+<script src="js/lib/alertifyjs/alertify.min.js"></script>
+<!--web socket functionality files-->
+<script src="js/lib/sockjs.js"></script>
+<script src="js/lib/stomp.js"></script>
+<!-- Main script functionality file-->
+<script src="js/script.js"></script>
+</body>
+
+</html>
