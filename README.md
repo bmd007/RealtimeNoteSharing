@@ -19,10 +19,7 @@
 * HTML : front-end
 * JavaScript : front-end
 
-**Frameworks:**
-* Spring-Boot 2.1.0.BUILD-SNAPSHOT
-
-**Libraries:**
+**UI Frameworks:**
 * JSF (PrimeFaces)
 * Material Kit. 
 * jQuery
