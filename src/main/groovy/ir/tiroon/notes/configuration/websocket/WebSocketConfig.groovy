@@ -8,11 +8,11 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 @Configuration
 @EnableWebSocketMessageBroker
-class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
+class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic","/queue")
+        config.enableSimpleBroker("/topic", "/queue")
         config.setApplicationDestinationPrefixes("/app")
     }
 
@@ -26,7 +26,6 @@ class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
                 .setAllowedOrigins("*")
                 .withSockJS()
     }
-
 
 }
 

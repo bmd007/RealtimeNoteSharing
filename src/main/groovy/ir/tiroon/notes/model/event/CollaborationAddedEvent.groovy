@@ -1,9 +1,9 @@
 package ir.tiroon.notes.model.event
 
-import ir.tiroon.fanavard.q2.monolith.model.Note
-import ir.tiroon.fanavard.q2.monolith.model.User
+import ir.tiroon.notes.model.Note
+import ir.tiroon.notes.model.User
 
-class CollaborationAddedEvent implements Serializable{
+class CollaborationAddedEvent implements Serializable {
     Note note
     User addedUser
 

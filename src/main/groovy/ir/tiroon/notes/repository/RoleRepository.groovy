@@ -1,6 +1,6 @@
 package ir.tiroon.notes.repository
 
-import ir.tiroon.fanavard.q2.monolith.model.Role
+import ir.tiroon.notes.model.Role
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

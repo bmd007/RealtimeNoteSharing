@@ -1,7 +1,7 @@
 package ir.tiroon.notes
 
-import ir.tiroon.fanavard.q2.monolith.model.Role
-import ir.tiroon.fanavard.q2.monolith.service.RoleServices
+import ir.tiroon.notes.model.Role
+import ir.tiroon.notes.service.RoleServices
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
@@ -10,12 +10,11 @@ import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
-@EnableAsync
 @SpringBootApplication
-class Q2Application implements CommandLineRunner, WebMvcConfigurer {
+class Application implements CommandLineRunner, WebMvcConfigurer {
 
     static void main(String[] args) {
-        SpringApplication.run Q2Application, args
+        SpringApplication.run Application, args
     }
 
     @Autowired
@@ -30,16 +29,13 @@ class Q2Application implements CommandLineRunner, WebMvcConfigurer {
             r1.setRoleName("USER")
             r1.setDescription("Common system users")
             roleServices.save(r1)
-
         }
 
         if (roleServices.getByName("ADMIN") == null) {
-
             def r2 = new Role()
             r2.setRoleId(2)
             r2.setRoleName("ADMIN")
             r2.setDescription("Administrators")
-
             roleServices.save(r2)
         }
     }

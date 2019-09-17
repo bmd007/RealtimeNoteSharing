@@ -1,8 +1,8 @@
 package ir.tiroon.notes.service
 
-import ir.tiroon.fanavard.q2.monolith.model.Role
-import ir.tiroon.fanavard.q2.monolith.model.State
-import ir.tiroon.fanavard.q2.monolith.model.User
+import ir.tiroon.notes.model.Role
+import ir.tiroon.notes.model.State
+import ir.tiroon.notes.model.User
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -25,7 +25,7 @@ class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Username not found")
         }
 
-        def userDetails = new org.springframework.security.core.userdetails.User(
+        new org.springframework.security.core.userdetails.User(
                 user.getPhoneNumber(),
                 user.getPassword(),
                 user.getState() == State.Active,
@@ -34,11 +34,7 @@ class CustomUserDetailsService implements UserDetailsService {
                 true,
                 getGrantedAuthorities(user)
         )
-
-        userDetails
-
     }
-
 
     private List<GrantedAuthority> getGrantedAuthorities(User user) {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>()

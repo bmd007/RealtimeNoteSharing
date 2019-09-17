@@ -1,14 +1,12 @@
 package ir.tiroon.notes.bean
 
-import ir.tiroon.fanavard.q2.monolith.service.UserServices
-import org.primefaces.context.RequestContext
+import ir.tiroon.notes.service.UserServices
 import org.springframework.beans.factory.annotation.Autowired
 
 import javax.annotation.PostConstruct
 import javax.faces.application.FacesMessage
 import javax.faces.context.FacesContext
 import javax.faces.event.ActionEvent
-import javax.faces.view.ViewScoped
 import javax.inject.Named
 
 @Named("registerBean")

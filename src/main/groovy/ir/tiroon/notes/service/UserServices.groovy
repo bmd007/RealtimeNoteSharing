@@ -1,10 +1,10 @@
 package ir.tiroon.notes.service
 
-import ir.tiroon.fanavard.q2.monolith.model.State
-import ir.tiroon.fanavard.q2.monolith.model.User
-import ir.tiroon.fanavard.q2.monolith.repository.NoteRepository
-import ir.tiroon.fanavard.q2.monolith.repository.RoleRepository
-import ir.tiroon.fanavard.q2.monolith.repository.UserRepository
+import ir.tiroon.notes.model.State
+import ir.tiroon.notes.model.User
+import ir.tiroon.notes.repository.NoteRepository
+import ir.tiroon.notes.repository.RoleRepository
+import ir.tiroon.notes.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 
 import java.util.stream.Collectors
 
-//@Transactional
+@Transactional
 @Service("userService")
 class UserServices {
 
@@ -38,19 +38,17 @@ class UserServices {
         user
     }
 
-    User saveWithParameter(String email, String name, String password, String phoneNumber){
+    User saveWithParameter(String email, String name, String password, String phoneNumber) {
         saveWithPassEncoding(new User(name, password, email, phoneNumber))
     }
 
-
     User get(String phn) {
-            userRepository.getOne(phn)
+        userRepository.getOne(phn)
     }
 
     User getAndNullIfNotExists(String phn) {
-            userRepository.findUserByPhoneNumber(phn)
+        userRepository.findUserByPhoneNumber(phn)
     }
-
 
     User getByEmail(String email) {
         userRepository.findUserByEmail(email)
@@ -60,16 +58,14 @@ class UserServices {
         (ArrayList<User>) userRepository.findAll()
     }
 
-
     boolean delete(String phn, String requesterPhoneNumber) {
         def user = userRepository.getOne(phn)
         if (user.phoneNumber == requesterPhoneNumber) {
             userRepository.delete()
             userRepository.flush()
             true
-        }else false
+        } else false
     }
-
 
     Set<User> whoIsNotCollaborating(Long noteId, String requesterPhoneNumber) {
 
@@ -77,15 +73,14 @@ class UserServices {
 
         def collaborators = note.collaborators
 
-        if(note.owner.phoneNumber == requesterPhoneNumber){
-           def result =  userRepository.findAll()
+        if (note.owner.phoneNumber == requesterPhoneNumber) {
+            def result = userRepository.findAll()
                     .stream()
-                    .filter{ !collaborators.contains(it) }
+                    .filter { !collaborators.contains(it) }
                     .collect(Collectors.toSet())
             result.remove(note.owner)
             result
         } else null
     }
-
 
 }

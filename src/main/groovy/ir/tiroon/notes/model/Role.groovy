@@ -33,7 +33,6 @@ class Role implements Serializable {
     Role() {
     }
 
-
     Role(String roleName, String description, Set<User> users) {
         this.roleName = roleName
         this.description = description

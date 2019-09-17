@@ -1,12 +1,12 @@
 package ir.tiroon.notes.service
 
-import ir.tiroon.fanavard.q2.monolith.model.Role
-import ir.tiroon.fanavard.q2.monolith.repository.RoleRepository
+import ir.tiroon.notes.model.Role
+import ir.tiroon.notes.repository.RoleRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-//@Transactional
+@Transactional
 @Service("roleService")
 class RoleServices {
 
@@ -15,11 +15,11 @@ class RoleServices {
 
     void save(Role role) { roleRepository.save(role) }
 
-    Role get(Long id) { roleRepository.getOne(id)    }
+    Role get(Long id) { roleRepository.getOne(id) }
 
-    Role getByName(String name) { roleRepository.findRoleByRoleName(name)    }
+    Role getByName(String name) { roleRepository.findRoleByRoleName(name) }
 
-    ArrayList<Role> list() { (ArrayList<Role>) roleRepository.findAll()    }
+    ArrayList<Role> list() { (ArrayList<Role>) roleRepository.findAll() }
 
     void delete(Role role) {
         roleRepository.delete(role)

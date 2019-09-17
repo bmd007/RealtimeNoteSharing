@@ -1,8 +1,8 @@
-(function(global, factory) {
+(function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('jquery'), require('popper.js')) :
         typeof define === 'function' && define.amd ? define(['jquery', 'popper.js'], factory) :
-        (factory(global.jQuery, global.Popper));
-}(this, (function($, Popper$1) {
+            (factory(global.jQuery, global.Popper));
+}(this, (function ($, Popper$1) {
     'use strict';
 
     $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
@@ -25,7 +25,7 @@
     }
 
     function _extends() {
-        _extends = Object.assign || function(target) {
+        _extends = Object.assign || function (target) {
             for (var i = 1; i < arguments.length; i++) {
                 var source = arguments[i];
 
@@ -55,7 +55,7 @@
      * --------------------------------------------------------------------------
      */
 
-    var Util = function($$$1) {
+    var Util = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Private TransitionEnd Helpers
@@ -96,10 +96,10 @@
             var _this = this;
 
             var called = false;
-            $$$1(this).one(Util.TRANSITION_END, function() {
+            $$$1(this).one(Util.TRANSITION_END, function () {
                 called = true;
             });
-            setTimeout(function() {
+            setTimeout(function () {
                 if (!called) {
                     Util.triggerTransitionEnd(_this);
                 }
@@ -115,6 +115,7 @@
                 $$$1.event.special[Util.TRANSITION_END] = getSpecialTransitionEndEvent();
             }
         }
+
         /**
          * --------------------------------------------------------------------------
          * Public Util Api
@@ -183,7 +184,7 @@
      * --------------------------------------------------------------------------
      */
 
-    var Alert = function($$$1) {
+    var Alert = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -218,7 +219,7 @@
 
         var Alert =
             /*#__PURE__*/
-            function() {
+            function () {
                 function Alert(element) {
                     this._element = element;
                 } // Getters
@@ -279,7 +280,7 @@
                         return;
                     }
 
-                    $$$1(element).one(Util.TRANSITION_END, function(event) {
+                    $$$1(element).one(Util.TRANSITION_END, function (event) {
                         return _this._destroyElement(element, event);
                     }).emulateTransitionEnd(TRANSITION_DURATION);
                 };
@@ -290,7 +291,7 @@
 
 
                 Alert._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -306,7 +307,7 @@
                 };
 
                 Alert._handleDismiss = function _handleDismiss(alertInstance) {
-                    return function(event) {
+                    return function (event) {
                         if (event) {
                             event.preventDefault();
                         }
@@ -341,7 +342,7 @@
         $$$1.fn[NAME] = Alert._jQueryInterface;
         $$$1.fn[NAME].Constructor = Alert;
 
-        $$$1.fn[NAME].noConflict = function() {
+        $$$1.fn[NAME].noConflict = function () {
             $$$1.fn[NAME] = JQUERY_NO_CONFLICT;
             return Alert._jQueryInterface;
         };
@@ -356,7 +357,7 @@
      * --------------------------------------------------------------------------
      */
 
-    var Button = function($$$1) {
+    var Button = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -393,7 +394,7 @@
 
         var Button =
             /*#__PURE__*/
-            function() {
+            function () {
                 function Button(element) {
                     this._element = element;
                 } // Getters
@@ -453,7 +454,7 @@
 
 
                 Button._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var data = $$$1(this).data(DATA_KEY);
 
                         if (!data) {
@@ -483,7 +484,7 @@
          */
 
 
-        $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE_CARROT, function(event) {
+        $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE_CARROT, function (event) {
             event.preventDefault();
             var button = event.target;
 
@@ -492,7 +493,7 @@
             }
 
             Button._jQueryInterface.call($$$1(button), 'toggle');
-        }).on(Event.FOCUS_BLUR_DATA_API, Selector.DATA_TOGGLE_CARROT, function(event) {
+        }).on(Event.FOCUS_BLUR_DATA_API, Selector.DATA_TOGGLE_CARROT, function (event) {
             var button = $$$1(event.target).closest(Selector.BUTTON)[0];
             $$$1(button).toggleClass(ClassName.FOCUS, /^focus(in)?$/.test(event.type));
         });
@@ -505,7 +506,7 @@
         $$$1.fn[NAME] = Button._jQueryInterface;
         $$$1.fn[NAME].Constructor = Button;
 
-        $$$1.fn[NAME].noConflict = function() {
+        $$$1.fn[NAME].noConflict = function () {
             $$$1.fn[NAME] = JQUERY_NO_CONFLICT;
             return Button._jQueryInterface;
         };
@@ -520,7 +521,7 @@
      * --------------------------------------------------------------------------
      */
 
-    var Carousel = function($$$1) {
+    var Carousel = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -597,7 +598,7 @@
 
         var Carousel =
             /*#__PURE__*/
-            function() {
+            function () {
                 function Carousel(element, config) {
                     this._items = null;
                     this._interval = null;
@@ -676,7 +677,7 @@
                     }
 
                     if (this._isSliding) {
-                        $$$1(this._element).one(Event.SLID, function() {
+                        $$$1(this._element).one(Event.SLID, function () {
                             return _this.to(index);
                         });
                         return;
@@ -717,15 +718,15 @@
                     var _this2 = this;
 
                     if (this._config.keyboard) {
-                        $$$1(this._element).on(Event.KEYDOWN, function(event) {
+                        $$$1(this._element).on(Event.KEYDOWN, function (event) {
                             return _this2._keydown(event);
                         });
                     }
 
                     if (this._config.pause === 'hover') {
-                        $$$1(this._element).on(Event.MOUSEENTER, function(event) {
+                        $$$1(this._element).on(Event.MOUSEENTER, function (event) {
                             return _this2.pause(event);
-                        }).on(Event.MOUSELEAVE, function(event) {
+                        }).on(Event.MOUSELEAVE, function (event) {
                             return _this2.cycle(event);
                         });
 
@@ -737,14 +738,14 @@
                             // (as if it's the second time we tap on it, mouseenter compat event
                             // is NOT fired) and after a timeout (to allow for mouse compatibility
                             // events to fire) we explicitly restart cycling
-                            $$$1(this._element).on(Event.TOUCHEND, function() {
+                            $$$1(this._element).on(Event.TOUCHEND, function () {
                                 _this2.pause();
 
                                 if (_this2.touchTimeout) {
                                     clearTimeout(_this2.touchTimeout);
                                 }
 
-                                _this2.touchTimeout = setTimeout(function(event) {
+                                _this2.touchTimeout = setTimeout(function (event) {
                                     return _this2.cycle(event);
                                 }, TOUCHEVENT_COMPAT_WAIT + _this2._config.interval);
                             });
@@ -885,11 +886,11 @@
                         Util.reflow(nextElement);
                         $$$1(activeElement).addClass(directionalClassName);
                         $$$1(nextElement).addClass(directionalClassName);
-                        $$$1(activeElement).one(Util.TRANSITION_END, function() {
+                        $$$1(activeElement).one(Util.TRANSITION_END, function () {
                             $$$1(nextElement).removeClass(directionalClassName + " " + orderClassName).addClass(ClassName.ACTIVE);
                             $$$1(activeElement).removeClass(ClassName.ACTIVE + " " + orderClassName + " " + directionalClassName);
                             _this3._isSliding = false;
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 return $$$1(_this3._element).trigger(slidEvent);
                             }, 0);
                         }).emulateTransitionEnd(TRANSITION_DURATION);
@@ -907,7 +908,7 @@
 
 
                 Carousel._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var data = $$$1(this).data(DATA_KEY);
 
                         var _config = $$$1.extend({}, Default, $$$1(this).data());
@@ -989,8 +990,8 @@
 
 
         $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_SLIDE, Carousel._dataApiClickHandler);
-        $$$1(window).on(Event.LOAD_DATA_API, function() {
-            $$$1(Selector.DATA_RIDE).each(function() {
+        $$$1(window).on(Event.LOAD_DATA_API, function () {
+            $$$1(Selector.DATA_RIDE).each(function () {
                 var $carousel = $$$1(this);
 
                 Carousel._jQueryInterface.call($carousel, $carousel.data());
@@ -1005,7 +1006,7 @@
         $$$1.fn[NAME] = Carousel._jQueryInterface;
         $$$1.fn[NAME].Constructor = Carousel;
 
-        $$$1.fn[NAME].noConflict = function() {
+        $$$1.fn[NAME].noConflict = function () {
             $$$1.fn[NAME] = JQUERY_NO_CONFLICT;
             return Carousel._jQueryInterface;
         };
@@ -1020,7 +1021,7 @@
      * --------------------------------------------------------------------------
      */
 
-    var Collapse = function($$$1) {
+    var Collapse = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -1071,7 +1072,7 @@
 
         var Collapse =
             /*#__PURE__*/
-            function() {
+            function () {
                 function Collapse(element, config) {
                     this._isTransitioning = false;
                     this._element = element;
@@ -1281,7 +1282,7 @@
                     }
 
                     var selector = "[data-toggle=\"collapse\"][data-parent=\"" + this._config.parent + "\"]";
-                    $$$1(parent).find(selector).each(function(i, element) {
+                    $$$1(parent).find(selector).each(function (i, element) {
                         _this3._addAriaAndCollapsedClass(Collapse._getTargetFromElement(element), [element]);
                     });
                     return parent;
@@ -1304,7 +1305,7 @@
                 };
 
                 Collapse._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $this = $$$1(this);
                         var data = $this.data(DATA_KEY);
 
@@ -1350,7 +1351,7 @@
          */
 
 
-        $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function(event) {
+        $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
             // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
             if (event.currentTarget.tagName === 'A') {
                 event.preventDefault();
@@ -1358,7 +1359,7 @@
 
             var $trigger = $$$1(this);
             var selector = Util.getSelectorFromElement(this);
-            $$$1(selector).each(function() {
+            $$$1(selector).each(function () {
                 var $target = $$$1(this);
                 var data = $target.data(DATA_KEY);
                 var config = data ? 'toggle' : $trigger.data();
@@ -1375,7 +1376,7 @@
         $$$1.fn[NAME] = Collapse._jQueryInterface;
         $$$1.fn[NAME].Constructor = Collapse;
 
-        $$$1.fn[NAME].noConflict = function() {
+        $$$1.fn[NAME].noConflict = function () {
             $$$1.fn[NAME] = JQUERY_NO_CONFLICT;
             return Collapse._jQueryInterface;
         };
@@ -1390,7 +1391,7 @@
      * --------------------------------------------------------------------------
      */
 
-    var Modal = function($$$1) {
+    var Modal = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -1455,7 +1456,7 @@
 
         var Modal =
             /*#__PURE__*/
-            function() {
+            function () {
                 function Modal(element, config) {
                     this._config = this._getConfig(config);
                     this._element = element;
@@ -1510,18 +1511,18 @@
 
                     this._setResizeEvent();
 
-                    $$$1(this._element).on(Event.CLICK_DISMISS, Selector.DATA_DISMISS, function(event) {
+                    $$$1(this._element).on(Event.CLICK_DISMISS, Selector.DATA_DISMISS, function (event) {
                         return _this.hide(event);
                     });
-                    $$$1(this._dialog).on(Event.MOUSEDOWN_DISMISS, function() {
-                        $$$1(_this._element).one(Event.MOUSEUP_DISMISS, function(event) {
+                    $$$1(this._dialog).on(Event.MOUSEDOWN_DISMISS, function () {
+                        $$$1(_this._element).one(Event.MOUSEUP_DISMISS, function (event) {
                             if ($$$1(event.target).is(_this._element)) {
                                 _this._ignoreBackdropClick = true;
                             }
                         });
                     });
 
-                    this._showBackdrop(function() {
+                    this._showBackdrop(function () {
                         return _this._showElement(relatedTarget);
                     });
                 };
@@ -1561,7 +1562,7 @@
                     $$$1(this._dialog).off(Event.MOUSEDOWN_DISMISS);
 
                     if (transition) {
-                        $$$1(this._element).one(Util.TRANSITION_END, function(event) {
+                        $$$1(this._element).one(Util.TRANSITION_END, function (event) {
                             return _this2._hideModal(event);
                         }).emulateTransitionEnd(TRANSITION_DURATION);
                     } else {
@@ -1643,7 +1644,7 @@
                     var _this4 = this;
 
                     $$$1(document).off(Event.FOCUSIN) // Guard against infinite focus loop
-                        .on(Event.FOCUSIN, function(event) {
+                        .on(Event.FOCUSIN, function (event) {
                             if (document !== event.target && _this4._element !== event.target && $$$1(_this4._element).has(event.target).length === 0) {
                                 _this4._element.focus();
                             }
@@ -1654,7 +1655,7 @@
                     var _this5 = this;
 
                     if (this._isShown && this._config.keyboard) {
-                        $$$1(this._element).on(Event.KEYDOWN_DISMISS, function(event) {
+                        $$$1(this._element).on(Event.KEYDOWN_DISMISS, function (event) {
                             if (event.which === ESCAPE_KEYCODE) {
                                 event.preventDefault();
 
@@ -1670,7 +1671,7 @@
                     var _this6 = this;
 
                     if (this._isShown) {
-                        $$$1(window).on(Event.RESIZE, function(event) {
+                        $$$1(window).on(Event.RESIZE, function (event) {
                             return _this6.handleUpdate(event);
                         });
                     } else {
@@ -1687,7 +1688,7 @@
 
                     this._isTransitioning = false;
 
-                    this._showBackdrop(function() {
+                    this._showBackdrop(function () {
                         $$$1(document.body).removeClass(ClassName.OPEN);
 
                         _this7._resetAdjustments();
@@ -1720,7 +1721,7 @@
                         }
 
                         $$$1(this._backdrop).appendTo(document.body);
-                        $$$1(this._element).on(Event.CLICK_DISMISS, function(event) {
+                        $$$1(this._element).on(Event.CLICK_DISMISS, function (event) {
                             if (_this8._ignoreBackdropClick) {
                                 _this8._ignoreBackdropClick = false;
                                 return;
@@ -1808,19 +1809,19 @@
                         // Note: DOMNode.style.paddingRight returns the actual value or '' if not set
                         //   while $(DOMNode).css('padding-right') returns the calculated value or 0 if not set
                         // Adjust fixed content padding
-                        $$$1(Selector.FIXED_CONTENT).each(function(index, element) {
+                        $$$1(Selector.FIXED_CONTENT).each(function (index, element) {
                             var actualPadding = $$$1(element)[0].style.paddingRight;
                             var calculatedPadding = $$$1(element).css('padding-right');
                             $$$1(element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this9._scrollbarWidth + "px");
                         }); // Adjust sticky content margin
 
-                        $$$1(Selector.STICKY_CONTENT).each(function(index, element) {
+                        $$$1(Selector.STICKY_CONTENT).each(function (index, element) {
                             var actualMargin = $$$1(element)[0].style.marginRight;
                             var calculatedMargin = $$$1(element).css('margin-right');
                             $$$1(element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) - _this9._scrollbarWidth + "px");
                         }); // Adjust navbar-toggler margin
 
-                        $$$1(Selector.NAVBAR_TOGGLER).each(function(index, element) {
+                        $$$1(Selector.NAVBAR_TOGGLER).each(function (index, element) {
                             var actualMargin = $$$1(element)[0].style.marginRight;
                             var calculatedMargin = $$$1(element).css('margin-right');
                             $$$1(element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) + _this9._scrollbarWidth + "px");
@@ -1834,7 +1835,7 @@
 
                 _proto._resetScrollbar = function _resetScrollbar() {
                     // Restore fixed content padding
-                    $$$1(Selector.FIXED_CONTENT).each(function(index, element) {
+                    $$$1(Selector.FIXED_CONTENT).each(function (index, element) {
                         var padding = $$$1(element).data('padding-right');
 
                         if (typeof padding !== 'undefined') {
@@ -1842,7 +1843,7 @@
                         }
                     }); // Restore sticky content and navbar-toggler margin
 
-                    $$$1(Selector.STICKY_CONTENT + ", " + Selector.NAVBAR_TOGGLER).each(function(index, element) {
+                    $$$1(Selector.STICKY_CONTENT + ", " + Selector.NAVBAR_TOGGLER).each(function (index, element) {
                         var margin = $$$1(element).data('margin-right');
 
                         if (typeof margin !== 'undefined') {
@@ -1869,7 +1870,7 @@
 
 
                 Modal._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var data = $$$1(this).data(DATA_KEY);
 
                         var _config = _extends({}, Modal.Default, $$$1(this).data(), typeof config === 'object' && config);
@@ -1912,7 +1913,7 @@
          */
 
 
-        $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function(event) {
+        $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
             var _this10 = this;
 
             var target;
@@ -1928,13 +1929,13 @@
                 event.preventDefault();
             }
 
-            var $target = $$$1(target).one(Event.SHOW, function(showEvent) {
+            var $target = $$$1(target).one(Event.SHOW, function (showEvent) {
                 if (showEvent.isDefaultPrevented()) {
                     // Only register focus restorer if modal will actually get shown
                     return;
                 }
 
-                $target.one(Event.HIDDEN, function() {
+                $target.one(Event.HIDDEN, function () {
                     if ($$$1(_this10).is(':visible')) {
                         _this10.focus();
                     }
@@ -1952,7 +1953,7 @@
         $$$1.fn[NAME] = Modal._jQueryInterface;
         $$$1.fn[NAME].Constructor = Modal;
 
-        $$$1.fn[NAME].noConflict = function() {
+        $$$1.fn[NAME].noConflict = function () {
             $$$1.fn[NAME] = JQUERY_NO_CONFLICT;
             return Modal._jQueryInterface;
         };
@@ -1967,7 +1968,7 @@
      * --------------------------------------------------------------------------
      */
 
-    var Tooltip = function($$$1) {
+    var Tooltip = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -2056,7 +2057,7 @@
 
         var Tooltip =
             /*#__PURE__*/
-            function() {
+            function () {
                 function Tooltip(element, config) {
                     /**
                      * Check for Popper dependency
@@ -2363,22 +2364,22 @@
                     var _this3 = this;
 
                     var triggers = this.config.trigger.split(' ');
-                    triggers.forEach(function(trigger) {
+                    triggers.forEach(function (trigger) {
                         if (trigger === 'click') {
-                            $$$1(_this3.element).on(_this3.constructor.Event.CLICK, _this3.config.selector, function(event) {
+                            $$$1(_this3.element).on(_this3.constructor.Event.CLICK, _this3.config.selector, function (event) {
                                 return _this3.toggle(event);
                             });
                         } else if (trigger !== Trigger.MANUAL) {
                             var eventIn = trigger === Trigger.HOVER ? _this3.constructor.Event.MOUSEENTER : _this3.constructor.Event.FOCUSIN;
                             var eventOut = trigger === Trigger.HOVER ? _this3.constructor.Event.MOUSELEAVE : _this3.constructor.Event.FOCUSOUT;
-                            $$$1(_this3.element).on(eventIn, _this3.config.selector, function(event) {
+                            $$$1(_this3.element).on(eventIn, _this3.config.selector, function (event) {
                                 return _this3._enter(event);
-                            }).on(eventOut, _this3.config.selector, function(event) {
+                            }).on(eventOut, _this3.config.selector, function (event) {
                                 return _this3._leave(event);
                             });
                         }
 
-                        $$$1(_this3.element).closest('.modal').on('hide.bs.modal', function() {
+                        $$$1(_this3.element).closest('.modal').on('hide.bs.modal', function () {
                             return _this3.hide();
                         });
                     });
@@ -2428,7 +2429,7 @@
                         return;
                     }
 
-                    context._timeout = setTimeout(function() {
+                    context._timeout = setTimeout(function () {
                         if (context._hoverState === HoverState.SHOW) {
                             context.show();
                         }
@@ -2460,7 +2461,7 @@
                         return;
                     }
 
-                    context._timeout = setTimeout(function() {
+                    context._timeout = setTimeout(function () {
                         if (context._hoverState === HoverState.OUT) {
                             context.hide();
                         }
@@ -2545,7 +2546,7 @@
 
 
                 Tooltip._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var data = $$$1(this).data(DATA_KEY);
 
                         var _config = typeof config === 'object' && config;
@@ -2618,7 +2619,7 @@
         $$$1.fn[NAME] = Tooltip._jQueryInterface;
         $$$1.fn[NAME].Constructor = Tooltip;
 
-        $$$1.fn[NAME].noConflict = function() {
+        $$$1.fn[NAME].noConflict = function () {
             $$$1.fn[NAME] = JQUERY_NO_CONFLICT;
             return Tooltip._jQueryInterface;
         };
@@ -2633,7 +2634,7 @@
      * --------------------------------------------------------------------------
      */
 
-    var Popover = function($$$1) {
+    var Popover = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -2687,7 +2688,7 @@
 
         var Popover =
             /*#__PURE__*/
-            function(_Tooltip) {
+            function (_Tooltip) {
                 _inheritsLoose(Popover, _Tooltip);
 
                 function Popover() {
@@ -2741,7 +2742,7 @@
 
 
                 Popover._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var data = $$$1(this).data(DATA_KEY);
 
                         var _config = typeof config === 'object' ? config : null;
@@ -2815,7 +2816,7 @@
         $$$1.fn[NAME] = Popover._jQueryInterface;
         $$$1.fn[NAME].Constructor = Popover;
 
-        $$$1.fn[NAME].noConflict = function() {
+        $$$1.fn[NAME].noConflict = function () {
             $$$1.fn[NAME] = JQUERY_NO_CONFLICT;
             return Popover._jQueryInterface;
         };
@@ -2830,7 +2831,7 @@
      * --------------------------------------------------------------------------
      */
 
-    var ScrollSpy = function($$$1) {
+    var ScrollSpy = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -2886,7 +2887,7 @@
 
         var ScrollSpy =
             /*#__PURE__*/
-            function() {
+            function () {
                 function ScrollSpy(element, config) {
                     var _this = this;
 
@@ -2898,7 +2899,7 @@
                     this._targets = [];
                     this._activeTarget = null;
                     this._scrollHeight = 0;
-                    $$$1(this._scrollElement).on(Event.SCROLL, function(event) {
+                    $$$1(this._scrollElement).on(Event.SCROLL, function (event) {
                         return _this._process(event);
                     });
                     this.refresh();
@@ -2920,7 +2921,7 @@
                     this._targets = [];
                     this._scrollHeight = this._getScrollHeight();
                     var targets = $$$1.makeArray($$$1(this._selector));
-                    targets.map(function(element) {
+                    targets.map(function (element) {
                         var target;
                         var targetSelector = Util.getSelectorFromElement(element);
 
@@ -2938,11 +2939,11 @@
                         }
 
                         return null;
-                    }).filter(function(item) {
+                    }).filter(function (item) {
                         return item;
-                    }).sort(function(a, b) {
+                    }).sort(function (a, b) {
                         return a[0] - b[0];
-                    }).forEach(function(item) {
+                    }).forEach(function (item) {
                         _this2._offsets.push(item[0]);
 
                         _this2._targets.push(item[1]);
@@ -3039,7 +3040,7 @@
                     var queries = this._selector.split(','); // eslint-disable-next-line arrow-body-style
 
 
-                    queries = queries.map(function(selector) {
+                    queries = queries.map(function (selector) {
                         return selector + "[data-target=\"" + target + "\"]," + (selector + "[href=\"" + target + "\"]");
                     });
                     var $link = $$$1(queries.join(','));
@@ -3068,7 +3069,7 @@
 
 
                 ScrollSpy._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var data = $$$1(this).data(DATA_KEY);
 
                         var _config = typeof config === 'object' && config;
@@ -3109,7 +3110,7 @@
          */
 
 
-        $$$1(window).on(Event.LOAD_DATA_API, function() {
+        $$$1(window).on(Event.LOAD_DATA_API, function () {
             var scrollSpys = $$$1.makeArray($$$1(Selector.DATA_SPY));
 
             for (var i = scrollSpys.length; i--;) {
@@ -3127,7 +3128,7 @@
         $$$1.fn[NAME] = ScrollSpy._jQueryInterface;
         $$$1.fn[NAME].Constructor = ScrollSpy;
 
-        $$$1.fn[NAME].noConflict = function() {
+        $$$1.fn[NAME].noConflict = function () {
             $$$1.fn[NAME] = JQUERY_NO_CONFLICT;
             return ScrollSpy._jQueryInterface;
         };
@@ -3142,7 +3143,7 @@
      * --------------------------------------------------------------------------
      */
 
-    var Tab = function($$$1) {
+    var Tab = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -3187,7 +3188,7 @@
 
         var Tab =
             /*#__PURE__*/
-            function() {
+            function () {
                 function Tab(element) {
                     this._element = element;
                 } // Getters
@@ -3326,7 +3327,7 @@
 
 
                 Tab._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $this = $$$1(this);
                         var data = $this.data(DATA_KEY);
 
@@ -3361,7 +3362,7 @@
          */
 
 
-        $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function(event) {
+        $$$1(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
             event.preventDefault();
 
             Tab._jQueryInterface.call($$$1(this), 'show');
@@ -3375,7 +3376,7 @@
         $$$1.fn[NAME] = Tab._jQueryInterface;
         $$$1.fn[NAME].Constructor = Tab;
 
-        $$$1.fn[NAME].noConflict = function() {
+        $$$1.fn[NAME].noConflict = function () {
             $$$1.fn[NAME] = JQUERY_NO_CONFLICT;
             return Tab._jQueryInterface;
         };
@@ -3383,7 +3384,7 @@
         return Tab;
     }($);
 
-    var Util$2 = function() {
+    var Util$2 = function () {
         /**
          * ------------------------------------------------------------------------
          * Private TransitionEnd Helpers
@@ -3421,6 +3422,7 @@
                 _transitionEndSelector += " " + TransitionEndEvent[name];
             }
         }
+
         /**
          * --------------------------------------------------------------------------
          * Public Util Api
@@ -3446,7 +3448,7 @@
                         event.which !== 17 && // ctrl
                         event.which !== 20 && // caps lock
                         event.which !== 27 // escape
-                    ;
+                        ;
                 }
 
                 return false;
@@ -3476,7 +3478,7 @@
         return Util;
     }(jQuery);
 
-    var Base = function($$$1) {
+    var Base = function ($$$1) {
         var ClassName = {
             BMD_FORM_GROUP: "bmd-form-group",
             IS_FILLED: "is-filled",
@@ -3494,7 +3496,7 @@
 
         var Base =
             /*#__PURE__*/
-            function() {
+            function () {
                 /**
                  *
                  * @param element
@@ -3567,7 +3569,7 @@
         return Base;
     }(jQuery);
 
-    var BaseInput = function($$$1) {
+    var BaseInput = function ($$$1) {
         var ClassName = {
             FORM_GROUP: "form-group",
             BMD_FORM_GROUP: "bmd-form-group",
@@ -3627,7 +3629,7 @@
 
         var BaseInput =
             /*#__PURE__*/
-            function(_Base) {
+            function (_Base) {
                 _inheritsLoose(BaseInput, _Base);
 
                 /**
@@ -3693,9 +3695,9 @@
                 _proto.addFocusListener = function addFocusListener() {
                     var _this2 = this;
 
-                    this.$element.on("focus", function() {
+                    this.$element.on("focus", function () {
                         _this2.addFormGroupFocus();
-                    }).on("blur", function() {
+                    }).on("blur", function () {
                         _this2.removeFormGroupFocus();
                     });
                 };
@@ -3703,11 +3705,11 @@
                 _proto.addChangeListener = function addChangeListener() {
                     var _this3 = this;
 
-                    this.$element.on("keydown paste", function(event) {
+                    this.$element.on("keydown paste", function (event) {
                         if (Util$2.isChar(event)) {
                             _this3.addIsFilled();
                         }
-                    }).on("keyup change", function() {
+                    }).on("keyup change", function () {
                         // make sure empty is added back when there is a programmatic value change.
                         //  NOTE: programmatic changing of value using $.val() must trigger the change event i.e. $.val('x').trigger('change')
                         if (_this3.isEmpty()) {
@@ -3805,7 +3807,7 @@
 
                     var label = null; // use the specified selector order
 
-                    for (var _iterator = this.config.label.selectors, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+                    for (var _iterator = this.config.label.selectors, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
                         var _ref;
 
                         if (_isArray) {
@@ -3871,7 +3873,7 @@
 
 
                 _proto._rejectInvalidComponentMatches = function _rejectInvalidComponentMatches() {
-                    for (var _iterator2 = this.config.invalidComponentMatches, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+                    for (var _iterator2 = this.config.invalidComponentMatches, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator](); ;) {
                         var _ref2;
 
                         if (_isArray2) {
@@ -3890,7 +3892,7 @@
                 };
 
                 _proto._rejectWithoutRequiredClasses = function _rejectWithoutRequiredClasses() {
-                    for (var _iterator3 = this.config.requiredClasses, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+                    for (var _iterator3 = this.config.requiredClasses, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator](); ;) {
                         var _ref3;
 
                         if (_isArray3) {
@@ -3908,7 +3910,7 @@
                         if (_requiredClass.indexOf("||") !== -1) {
                             var oneOf = _requiredClass.split("||");
 
-                            for (var _iterator4 = oneOf, _isArray4 = Array.isArray(_iterator4), _i4 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
+                            for (var _iterator4 = oneOf, _isArray4 = Array.isArray(_iterator4), _i4 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator](); ;) {
                                 var _ref4;
 
                                 if (_isArray4) {
@@ -3946,7 +3948,7 @@
         return BaseInput;
     }(jQuery);
 
-    var BaseSelection = function($$$1) {
+    var BaseSelection = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -3978,7 +3980,7 @@
 
         var BaseSelection =
             /*#__PURE__*/
-            function(_BaseInput) {
+            function (_BaseInput) {
                 _inheritsLoose(BaseSelection, _BaseInput);
 
                 function BaseSelection($element, config, properties) {
@@ -4026,9 +4028,9 @@
                     var _this2 = this;
 
                     // checkboxes didn't appear to bubble to the document, so we'll bind these directly
-                    this.$element.closest(Selector.LABEL).hover(function() {
+                    this.$element.closest(Selector.LABEL).hover(function () {
                         _this2.addFormGroupFocus();
-                    }, function() {
+                    }, function () {
                         _this2.removeFormGroupFocus();
                     });
                 };
@@ -4036,7 +4038,7 @@
                 _proto.addChangeListener = function addChangeListener() {
                     var _this3 = this;
 
-                    this.$element.change(function() {
+                    this.$element.change(function () {
                         _this3.$element.blur();
                     });
                 }; // ------------------------------------------------------------------------
@@ -4054,7 +4056,7 @@
     //import Textarea from './textarea'
     //import Select from './select'
 
-    var Checkbox = function($$$1) {
+    var Checkbox = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -4075,7 +4077,7 @@
 
         var Checkbox =
             /*#__PURE__*/
-            function(_BaseSelection) {
+            function (_BaseSelection) {
                 _inheritsLoose(Checkbox, _BaseSelection);
 
                 function Checkbox($element, config, properties) {
@@ -4122,7 +4124,7 @@
 
 
                 Checkbox._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -4145,7 +4147,7 @@
         $$$1.fn[JQUERY_NAME] = Checkbox._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = Checkbox;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return Checkbox._jQueryInterface;
         };
@@ -4153,7 +4155,7 @@
         return Checkbox;
     }(jQuery);
 
-    var CheckboxInline = function($$$1) {
+    var CheckboxInline = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -4178,7 +4180,7 @@
 
         var CheckboxInline =
             /*#__PURE__*/
-            function(_Checkbox) {
+            function (_Checkbox) {
                 _inheritsLoose(CheckboxInline, _Checkbox);
 
                 function CheckboxInline($element, config, properties) {
@@ -4218,7 +4220,7 @@
 
 
                 CheckboxInline._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -4241,7 +4243,7 @@
         $$$1.fn[JQUERY_NAME] = CheckboxInline._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = CheckboxInline;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return CheckboxInline._jQueryInterface;
         };
@@ -4249,7 +4251,7 @@
         return CheckboxInline;
     }(jQuery);
 
-    var CollapseInline = function($$$1) {
+    var CollapseInline = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -4278,7 +4280,7 @@
 
         var CollapseInline =
             /*#__PURE__*/
-            function(_Base) {
+            function (_Base) {
                 _inheritsLoose(CollapseInline, _Base);
 
                 // $element is expected to be the trigger
@@ -4306,12 +4308,12 @@
 
                     if (_this.$input) {
                         // add a listener to set focus
-                        _this.$collapse.on("shown.bs.collapse", function() {
+                        _this.$collapse.on("shown.bs.collapse", function () {
                             _this.$input.focus();
                         }); // add a listener to collapse field
 
 
-                        _this.$input.blur(function() {
+                        _this.$input.blur(function () {
                             _this.$collapse.collapse("hide");
                         });
                     }
@@ -4334,7 +4336,7 @@
 
 
                 CollapseInline._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -4357,7 +4359,7 @@
         $$$1.fn[JQUERY_NAME] = CollapseInline._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = CollapseInline;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return CollapseInline._jQueryInterface;
         };
@@ -4371,7 +4373,7 @@
     //import Textarea from './textarea'
     //import Select from './select'
 
-    var File = function($$$1) {
+    var File = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -4397,7 +4399,7 @@
 
         var File =
             /*#__PURE__*/
-            function(_BaseInput) {
+            function (_BaseInput) {
                 _inheritsLoose(File, _BaseInput);
 
                 function File($element, config) {
@@ -4446,9 +4448,9 @@
                 _proto.addFocusListener = function addFocusListener() {
                     var _this2 = this;
 
-                    this.$bmdFormGroup.on("focus", function() {
+                    this.$bmdFormGroup.on("focus", function () {
                         _this2.addFormGroupFocus();
-                    }).on("blur", function() {
+                    }).on("blur", function () {
                         _this2.removeFormGroupFocus();
                     });
                 };
@@ -4457,9 +4459,9 @@
                     var _this3 = this;
 
                     // set the fileinput readonly field with the name of the file
-                    this.$element.on("change", function() {
+                    this.$element.on("change", function () {
                         var value = "";
-                        $$$1.each(_this3.$element.files, function(i, file) {
+                        $$$1.each(_this3.$element.files, function (i, file) {
                             value += file.name + "  , ";
                         });
                         value = value.substring(0, value.length - 2);
@@ -4479,7 +4481,7 @@
 
 
                 File._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -4502,7 +4504,7 @@
         $$$1.fn[JQUERY_NAME] = File._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = File;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return File._jQueryInterface;
         };
@@ -4514,7 +4516,7 @@
     //import Checkbox from './checkbox'
     //import Switch from './switch'
 
-    var Radio = function($$$1) {
+    var Radio = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -4535,7 +4537,7 @@
 
         var Radio =
             /*#__PURE__*/
-            function(_BaseSelection) {
+            function (_BaseSelection) {
                 _inheritsLoose(Radio, _BaseSelection);
 
                 function Radio($element, config, properties) {
@@ -4583,7 +4585,7 @@
 
 
                 Radio._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -4606,7 +4608,7 @@
         $$$1.fn[JQUERY_NAME] = Radio._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = Radio;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return Radio._jQueryInterface;
         };
@@ -4614,7 +4616,7 @@
         return Radio;
     }(jQuery);
 
-    var RadioInline = function($$$1) {
+    var RadioInline = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -4639,7 +4641,7 @@
 
         var RadioInline =
             /*#__PURE__*/
-            function(_Radio) {
+            function (_Radio) {
                 _inheritsLoose(RadioInline, _Radio);
 
                 function RadioInline($element, config, properties) {
@@ -4668,7 +4670,7 @@
 
 
                 RadioInline._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -4691,7 +4693,7 @@
         $$$1.fn[JQUERY_NAME] = RadioInline._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = RadioInline;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return RadioInline._jQueryInterface;
         };
@@ -4699,7 +4701,7 @@
         return RadioInline;
     }(jQuery);
 
-    var BaseFormControl = function($$$1) {
+    var BaseFormControl = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -4716,7 +4718,7 @@
 
         var BaseFormControl =
             /*#__PURE__*/
-            function(_BaseInput) {
+            function (_BaseInput) {
                 _inheritsLoose(BaseFormControl, _BaseInput);
 
                 function BaseFormControl($element, config) {
@@ -4743,7 +4745,7 @@
     //import Text from './text'
     //import Textarea from './textarea'
 
-    var Select = function($$$1) {
+    var Select = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -4764,7 +4766,7 @@
 
         var Select =
             /*#__PURE__*/
-            function(_BaseFormControl) {
+            function (_BaseFormControl) {
                 _inheritsLoose(Select, _BaseFormControl);
 
                 function Select($element, config) {
@@ -4803,7 +4805,7 @@
 
 
                 Select._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -4826,7 +4828,7 @@
         $$$1.fn[JQUERY_NAME] = Select._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = Select;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return Select._jQueryInterface;
         };
@@ -4834,7 +4836,7 @@
         return Select;
     }(jQuery);
 
-    var Switch = function($$$1) {
+    var Switch = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -4855,7 +4857,7 @@
 
         var Switch =
             /*#__PURE__*/
-            function(_Checkbox) {
+            function (_Checkbox) {
                 _inheritsLoose(Switch, _Checkbox);
 
                 function Switch($element, config, properties) {
@@ -4882,7 +4884,7 @@
 
 
                 Switch._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -4905,7 +4907,7 @@
         $$$1.fn[JQUERY_NAME] = Switch._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = Switch;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return Switch._jQueryInterface;
         };
@@ -4919,7 +4921,7 @@
     //import Textarea from './textarea'
     //import Select from './select'
 
-    var Text = function($$$1) {
+    var Text = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -4938,7 +4940,7 @@
 
         var Text =
             /*#__PURE__*/
-            function(_BaseFormControl) {
+            function (_BaseFormControl) {
                 _inheritsLoose(Text, _BaseFormControl);
 
                 function Text($element, config) {
@@ -4975,7 +4977,7 @@
 
 
                 Text._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -4998,7 +5000,7 @@
         $$$1.fn[JQUERY_NAME] = Text._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = Text;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return Text._jQueryInterface;
         };
@@ -5012,7 +5014,7 @@
     //import Text from './text'
     //import Select from './select'
 
-    var Textarea = function($$$1) {
+    var Textarea = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -5031,7 +5033,7 @@
 
         var Textarea =
             /*#__PURE__*/
-            function(_BaseFormControl) {
+            function (_BaseFormControl) {
                 _inheritsLoose(Textarea, _BaseFormControl);
 
                 function Textarea($element, config) {
@@ -5064,7 +5066,7 @@
 
 
                 Textarea._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -5087,7 +5089,7 @@
         $$$1.fn[JQUERY_NAME] = Textarea._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = Textarea;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return Textarea._jQueryInterface;
         };
@@ -5108,7 +5110,7 @@
      * --------------------------------------------------------------------------
      */
 
-    var Dropdown = function($$$1) {
+    var Dropdown = function ($$$1) {
         /**
          * Check for Popper dependency
          * Popper - https://popper.js.org
@@ -5194,7 +5196,7 @@
 
         var Dropdown =
             /*#__PURE__*/
-            function() {
+            function () {
                 function Dropdown(element, config) {
                     this._element = element;
                     this._popper = null;
@@ -5257,7 +5259,7 @@
 
                     this._element.setAttribute('aria-expanded', true);
 
-                    $$$1(this._menu).one(Event.TRANSITION_END, function() {
+                    $$$1(this._menu).one(Event.TRANSITION_END, function () {
                         $$$1(parent).trigger($$$1.Event(Event.SHOWN, relatedTarget));
                         $$$1(_this._menu).removeClass(ClassName.SHOWING);
                     });
@@ -5290,7 +5292,7 @@
                 _proto._addEventListeners = function _addEventListeners() {
                     var _this2 = this;
 
-                    $$$1(this._element).on(Event.CLICK, function(event) {
+                    $$$1(this._element).on(Event.CLICK, function (event) {
                         event.preventDefault();
                         event.stopPropagation();
 
@@ -5366,7 +5368,7 @@
 
 
                 Dropdown._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var data = $$$1(this).data(DATA_KEY);
 
                         var _config = typeof config === 'object' ? config : null;
@@ -5431,7 +5433,7 @@
                         toggles[i].setAttribute('aria-expanded', 'false');
                         $$$1(dropdownMenu).addClass(ClassName.HIDING).removeClass(ClassName.SHOW);
                         $$$1(parent).removeClass(ClassName.SHOW);
-                        $$$1(dropdownMenu).one(Event.TRANSITION_END, function() {
+                        $$$1(dropdownMenu).one(Event.TRANSITION_END, function () {
                             $$$1(parent).trigger($$$1.Event(Event.HIDDEN, relatedTarget));
                             $$$1(dropdownMenu).removeClass(ClassName.HIDING);
                         });
@@ -5532,12 +5534,12 @@
          */
 
 
-        $$$1(document).on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, Dropdown._dataApiKeydownHandler).on(Event.KEYDOWN_DATA_API, Selector.MENU, Dropdown._dataApiKeydownHandler).on(Event.CLICK_DATA_API + " " + Event.KEYUP_DATA_API, Dropdown._clearMenus).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function(event) {
+        $$$1(document).on(Event.KEYDOWN_DATA_API, Selector.DATA_TOGGLE, Dropdown._dataApiKeydownHandler).on(Event.KEYDOWN_DATA_API, Selector.MENU, Dropdown._dataApiKeydownHandler).on(Event.CLICK_DATA_API + " " + Event.KEYUP_DATA_API, Dropdown._clearMenus).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
             event.preventDefault();
             event.stopPropagation();
 
             Dropdown._jQueryInterface.call($$$1(this), 'toggle');
-        }).on(Event.CLICK_DATA_API, Selector.FORM_CHILD, function(e) {
+        }).on(Event.CLICK_DATA_API, Selector.FORM_CHILD, function (e) {
             e.stopPropagation();
         });
         /**
@@ -5549,7 +5551,7 @@
         $$$1.fn[NAME] = Dropdown._jQueryInterface;
         $$$1.fn[NAME].Constructor = Dropdown;
 
-        $$$1.fn[NAME].noConflict = function() {
+        $$$1.fn[NAME].noConflict = function () {
             $$$1.fn[NAME] = JQUERY_NO_CONFLICT;
             return Dropdown._jQueryInterface;
         };
@@ -5557,7 +5559,7 @@
         return Dropdown;
     }(jQuery);
 
-    var BaseLayout = function($$$1) {
+    var BaseLayout = function ($$$1) {
         var ClassName = {
             CANVAS: "bmd-layout-canvas",
             CONTAINER: "bmd-layout-container",
@@ -5588,7 +5590,7 @@
 
         var BaseLayout =
             /*#__PURE__*/
-            function(_Base) {
+            function (_Base) {
                 _inheritsLoose(BaseLayout, _Base);
 
                 function BaseLayout($element, config, properties) {
@@ -5715,7 +5717,7 @@
         return BaseLayout;
     }(jQuery);
 
-    var Drawer = function($$$1) {
+    var Drawer = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -5748,7 +5750,7 @@
 
         var Drawer =
             /*#__PURE__*/
-            function(_BaseLayout) {
+            function (_BaseLayout) {
                 _inheritsLoose(Drawer, _BaseLayout);
 
                 // $element is expected to be the trigger
@@ -5762,23 +5764,23 @@
                     _this._addAria(); // click or escape on the backdrop closes the drawer
 
 
-                    _this.$backdrop.keydown(function(ev) {
+                    _this.$backdrop.keydown(function (ev) {
                         if (ev.which === Keycodes.ESCAPE) {
                             _this.hide();
                         }
-                    }).click(function() {
+                    }).click(function () {
                         _this.hide();
                     }); // escape on the drawer closes it
 
 
-                    _this.$element.keydown(function(ev) {
+                    _this.$element.keydown(function (ev) {
                         if (ev.which === Keycodes.ESCAPE) {
                             _this.hide();
                         }
                     }); // any toggle button clicks
 
 
-                    _this.$toggles.click(function() {
+                    _this.$toggles.click(function () {
                         _this.toggle();
                     });
 
@@ -5857,7 +5859,7 @@
 
 
                 Drawer._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -5880,7 +5882,7 @@
         $$$1.fn[JQUERY_NAME] = Drawer._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = Drawer;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return Drawer._jQueryInterface;
         };
@@ -5888,7 +5890,7 @@
         return Drawer;
     }(jQuery);
 
-    var Ripples = function($$$1) {
+    var Ripples = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -5929,7 +5931,7 @@
 
         var Ripples =
             /*#__PURE__*/
-            function() {
+            function () {
                 function Ripples($element, config) {
                     var _this = this;
 
@@ -5937,7 +5939,7 @@
 
                     this.config = $$$1.extend(true, {}, Default, config); // attach initial listener
 
-                    this.$element.on(this.config.trigger.start, function(event) {
+                    this.$element.on(this.config.trigger.start, function (event) {
                         _this._onStartRipple(event);
                     });
                 }
@@ -5987,11 +5989,11 @@
 
                     this.rippleOn(); // Call the rippleEnd function when the transition 'on' ends
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         _this2.rippleEnd();
                     }, this.config.duration); // Detect when the user leaves the element to cleanup if not already done?
 
-                    this.$element.on(this.config.trigger.end, function() {
+                    this.$element.on(this.config.trigger.end, function () {
                         if (_this2.$decorator) {
                             // guard against race condition/mouse attack
                             _this2.$decorator.data("mousedown", "off");
@@ -6121,12 +6123,12 @@
                     } else {
                         this.$decorator.animate({
                             opacity: 0
-                        }, 100, function() {
+                        }, 100, function () {
                             _this3.$decorator.trigger("transitionend");
                         });
                     }
 
-                    this.$decorator.on(Util$2.transitionEndSelector(), function() {
+                    this.$decorator.on(Util$2.transitionEndSelector(), function () {
                         if (_this3.$decorator) {
                             _this3.$decorator.remove();
 
@@ -6158,7 +6160,7 @@
                             "margin-left": Math.max(this.$element.outerWidth(), this.$element.outerHeight()) * -1,
                             "margin-top": Math.max(this.$element.outerWidth(), this.$element.outerHeight()) * -1,
                             opacity: 0.2
-                        }, this.config.duration, function() {
+                        }, this.config.duration, function () {
                             _this4.$decorator.trigger("transitionend");
                         });
                     }
@@ -6175,7 +6177,7 @@
 
 
                 Ripples._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -6198,7 +6200,7 @@
         $$$1.fn[JQUERY_NAME] = Ripples._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = Ripples;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return Ripples._jQueryInterface;
         };
@@ -6206,7 +6208,7 @@
         return Ripples;
     }(jQuery);
 
-    var Autofill = function($$$1) {
+    var Autofill = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -6225,7 +6227,7 @@
 
         var Autofill =
             /*#__PURE__*/
-            function(_Base) {
+            function (_Base) {
                 _inheritsLoose(Autofill, _Base);
 
                 function Autofill($element, config) {
@@ -6252,15 +6254,15 @@
                     var _this2 = this;
 
                     // After 10 seconds we are quite sure all the needed inputs are autofilled then we can stop checking them
-                    setTimeout(function() {
+                    setTimeout(function () {
                         clearInterval(_this2._onLoading);
                     }, 10000);
                 }; // This part of code will detect autofill when the page is loading (username and password inputs for example)
 
 
                 _proto._onLoading = function _onLoading() {
-                    setInterval(function() {
-                        $$$1("input[type!=checkbox]").each(function(index, element) {
+                    setInterval(function () {
+                        $$$1("input[type!=checkbox]").each(function (index, element) {
                             var $element = $$$1(element);
 
                             if ($element.val() && $element.val() !== $element.attr("value")) {
@@ -6274,10 +6276,10 @@
                     // Listen on inputs of the focused form
                     //  (because user can select from the autofill dropdown only when the input has focus)
                     var focused = null;
-                    $$$1(document).on("focus", "input", function(event) {
+                    $$$1(document).on("focus", "input", function (event) {
                         var $inputs = $$$1(event.currentTarget).closest("form").find("input").not("[type=file]");
-                        focused = setInterval(function() {
-                            $inputs.each(function(index, element) {
+                        focused = setInterval(function () {
+                            $inputs.each(function (index, element) {
                                 var $element = $$$1(element);
 
                                 if ($element.val() !== $element.attr("value")) {
@@ -6285,7 +6287,7 @@
                                 }
                             });
                         }, 100);
-                    }).on("blur", ".form-group input", function() {
+                    }).on("blur", ".form-group input", function () {
                         clearInterval(focused);
                     });
                 }; // ------------------------------------------------------------------------
@@ -6293,7 +6295,7 @@
 
 
                 Autofill._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -6316,7 +6318,7 @@
         $$$1.fn[JQUERY_NAME] = Autofill._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = Autofill;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return Autofill._jQueryInterface;
         };
@@ -6333,7 +6335,7 @@
      *  configure each component separately.
      */
 
-    var BootstrapMaterialDesign = function($$$1) {
+    var BootstrapMaterialDesign = function ($$$1) {
         /**
          * ------------------------------------------------------------------------
          * Constants
@@ -6422,7 +6424,7 @@
 
         var BootstrapMaterialDesign =
             /*#__PURE__*/
-            function() {
+            function () {
                 function BootstrapMaterialDesign($element, config) {
                     var _this = this;
 
@@ -6450,7 +6452,7 @@
                                 $$$1(selector)[jqueryFn](componentConfig); // add to arrive if present and enabled
 
                                 if (document.arrive && _this.config.arrive) {
-                                    $document.arrive(selector, function() {
+                                    $document.arrive(selector, function () {
                                         // eslint-disable-line no-loop-func
                                         $$$1(this)[jqueryFn](componentConfig);
                                     });
@@ -6464,7 +6466,7 @@
                         }
                     };
 
-                    for (var _iterator = this.config.instantiation, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+                    for (var _iterator = this.config.instantiation, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
                         var _ref;
 
                         if (_isArray) {
@@ -6505,7 +6507,7 @@
 
 
                 BootstrapMaterialDesign._jQueryInterface = function _jQueryInterface(config) {
-                    return this.each(function() {
+                    return this.each(function () {
                         var $element = $$$1(this);
                         var data = $element.data(DATA_KEY);
 
@@ -6528,7 +6530,7 @@
         $$$1.fn[JQUERY_NAME] = BootstrapMaterialDesign._jQueryInterface;
         $$$1.fn[JQUERY_NAME].Constructor = BootstrapMaterialDesign;
 
-        $$$1.fn[JQUERY_NAME].noConflict = function() {
+        $$$1.fn[JQUERY_NAME].noConflict = function () {
             $$$1.fn[JQUERY_NAME] = JQUERY_NO_CONFLICT;
             return BootstrapMaterialDesign._jQueryInterface;
         };

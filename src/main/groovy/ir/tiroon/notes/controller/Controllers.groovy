@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletResponse
 @Controller
 class Controllers {
 
-
     @RequestMapping(method = RequestMethod.GET, path = "/login")
     String login(Model model) {
         SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken ? "/login" : "redirect:/index.html"
@@ -51,6 +50,4 @@ class Controllers {
         }
         userName
     }
-
-
 }

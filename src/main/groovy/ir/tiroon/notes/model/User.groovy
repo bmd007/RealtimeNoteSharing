@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
-import ir.tiroon.fanavard.q2.monolith.model.event.NoteChangedEvent
+import ir.tiroon.notes.model.event.NoteChangedEvent
 import org.hibernate.annotations.Proxy
 
 import javax.persistence.*

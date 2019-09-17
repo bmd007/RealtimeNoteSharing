@@ -1,19 +1,22 @@
 package ir.tiroon.notes.service
 
-import ir.tiroon.fanavard.q2.monolith.model.*
-import ir.tiroon.fanavard.q2.monolith.model.event.CollaborationAddedEvent
-import ir.tiroon.fanavard.q2.monolith.model.event.CollaborationRemovedEvent
-import ir.tiroon.fanavard.q2.monolith.model.event.NoteChangedEvent
-import ir.tiroon.fanavard.q2.monolith.model.event.NoteRemovedEvent
-import ir.tiroon.fanavard.q2.monolith.repository.NoteRepository
-import ir.tiroon.fanavard.q2.monolith.repository.UserRepository
+
+import ir.tiroon.notes.model.Note
+import ir.tiroon.notes.model.User
+import ir.tiroon.notes.model.event.CollaborationAddedEvent
+import ir.tiroon.notes.model.event.CollaborationRemovedEvent
+import ir.tiroon.notes.model.event.NoteChangedEvent
+import ir.tiroon.notes.model.event.NoteRemovedEvent
+import ir.tiroon.notes.repository.NoteRepository
+import ir.tiroon.notes.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 import java.util.stream.Collectors
 
-//@Transactional
+@Transactional
 @Service("noteService")
 class NoteServices {
 
@@ -23,28 +26,19 @@ class NoteServices {
     @Autowired
     UserRepository userRepository
 
-
     @Autowired
     ApplicationEventPublisher eventPublisher
 
-
     NoteChangedEvent noteChangedEvent(Note note, String requesterPhoneNumber) {
-        if (
-        note.collaborators.phoneNumber.contains(requesterPhoneNumber)
-                ||
-                note.owner.phoneNumber == requesterPhoneNumber
+        if (note.collaborators.phoneNumber.contains(requesterPhoneNumber)
+                || note.owner.phoneNumber == requesterPhoneNumber
         ) {
-
             def noteChanger = userRepository.getOne(requesterPhoneNumber)
             def event = new NoteChangedEvent(noteChanger, note)
             eventPublisher.publishEvent(event)
             event
-
-        }else null
-
+        } else null
     }
-
-
 
     User addCollaboration(String newCollaboratorPhoneNumber, Long noteId, String requesterPhoneNumber) {
         def note = noteRepository.getOne(noteId)
@@ -61,15 +55,13 @@ class NoteServices {
         } else null
     }
 
-
     boolean removeCollaboration(String removingCollaboratorPhN, Long noteId, String requesterPhoneNumber) {
         def note = noteRepository.getOne(noteId)
         def removingCollaborator = userRepository.getOne(removingCollaboratorPhN)
         if (note.owner.phoneNumber == requesterPhoneNumber
                 ||
-                (
-                    note.collaborators.phoneNumber.contains(requesterPhoneNumber)
-                    &&
+                (   note.collaborators.phoneNumber.contains(requesterPhoneNumber)
+                  &&
                     removingCollaboratorPhN == requesterPhoneNumber
                 )
         ) {
@@ -86,14 +78,10 @@ class NoteServices {
         noteRepository.save(note)
     }
 
-
     Note update(Note updatedNote, String requesterPhoneNumber) {
         Note originalNote = noteRepository.getOne(updatedNote.noteId)
-
-        if (
-            originalNote.collaborators.phoneNumber.contains(requesterPhoneNumber)
-            ||
-            originalNote.owner.phoneNumber == requesterPhoneNumber
+        if (originalNote.collaborators.phoneNumber.contains(requesterPhoneNumber)
+                || originalNote.owner.phoneNumber == requesterPhoneNumber
         ) {
             originalNote.setText(updatedNote.getText())
             originalNote.setLabel(updatedNote.getLabel())
@@ -106,31 +94,29 @@ class NoteServices {
 //    @PostFilter("filterObject.owner.phoneNumber == authentication.principal.username")
     Note get(Long id, String requesterPhoneNumber) {
         def note = noteRepository.getOne(id)
-        (
-                note.collaborators.phoneNumber.contains(requesterPhoneNumber)
-                ||
-                note.owner.phoneNumber.equals(requesterPhoneNumber)
+        (note.collaborators.phoneNumber.contains(requesterPhoneNumber)
+                        || note.owner.phoneNumber.equals(requesterPhoneNumber)
         ) ? note : null
     }
 
 //    @PostFilter("filterObject.owner.phoneNumber == authentication.principal.username")
     Set<Note> list(String requesterPhoneNumber) {
-        (ArrayList<Note>) noteRepository.findAll().stream()
+        //TODO use database level queries for this
+        noteRepository.findAll().stream()
                 .filter { note ->
-            (
-                note.collaborators.phoneNumber.contains(requesterPhoneNumber)
-                ||
-                note.owner.phoneNumber.equals(requesterPhoneNumber)
-            )
-        }
-        .collect(Collectors.toSet())
+                    (
+                            note.collaborators.phoneNumber.contains(requesterPhoneNumber)
+                                    ||
+                                    note.owner.phoneNumber.equals(requesterPhoneNumber)
+                    )
+                }
+                .collect(Collectors.toSet())
     }
-
 
     boolean deleteById(Long id, String requesterPhoneNumber) {
         def note = noteRepository.getOne(id)
         if (note.owner.phoneNumber == requesterPhoneNumber) {
-            def noteRemovedEvent = new NoteRemovedEvent(id,note.collaborators)
+            def noteRemovedEvent = new NoteRemovedEvent(id, note.collaborators)
             noteRepository.deleteById(id)
             noteRepository.flush()
             eventPublisher.publishEvent(noteRemovedEvent)
@@ -145,16 +131,14 @@ class NoteServices {
         if (note.owner.phoneNumber == requesterPhoneNumber) {
             note.collaborators
         } else if (note.collaborators.phoneNumber.contains(requesterPhoneNumber)) {
-            def Set<User> noteCollaborators = new HashSet<>()
+            Set<User> noteCollaborators = new HashSet<>()
             noteCollaborators.add(userRepository.getOne(requesterPhoneNumber))
             noteCollaborators
         } else Collections.emptySet()
     }
 
 
-    Set<User> addCollaborationByList(String[] collaboratorsPhoneNumberArray,
-                                     Long noteId, String requesterPhoneNumber) {
-
+    Set<User> addCollaborationByList(String[] collaboratorsPhoneNumberArray, Long noteId, String requesterPhoneNumber) {
         def note = noteRepository.getOne(noteId)
         if (note.owner.phoneNumber == requesterPhoneNumber) {
 
@@ -167,13 +151,12 @@ class NoteServices {
 
             noteRepository.save(note)
 
-            resultSet.stream().forEach{
-               eventPublisher.publishEvent(new CollaborationAddedEvent(note, it)) }
+            resultSet.stream().forEach {
+                eventPublisher.publishEvent(new CollaborationAddedEvent(note, it))
+            }
 
             resultSet
 
         } else null
-
     }
-
 }

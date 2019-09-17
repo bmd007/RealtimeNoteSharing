@@ -15,9 +15,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository
-import org.springframework.security.web.csrf.CsrfTokenRepository
-import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository
 
 @Configuration
 @EnableWebSecurity
@@ -25,7 +22,6 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository
         prePostEnabled = true,
         securedEnabled = true,
         jsr250Enabled = true)
-//@EnableOAuth2Sso
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -42,7 +38,6 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     PasswordEncoder passwordEncoder() {
         PasswordEncoderFactories.createDelegatingPasswordEncoder()
     }
-
 
     @Bean
     @Qualifier("authenticationProvider")
@@ -67,24 +62,24 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 
                 .antMatchers("/login", "/javax.faces.resource/**",
-                "/logout", "/accessDenied", "/register.xhtml/**",
-                "/register.jsf/**", "/resources/**",
-                "/redirectAfterSuccessfulRegister.html").permitAll()
+                        "/logout", "/accessDenied", "/register.xhtml/**",
+                        "/register.jsf/**", "/resources/**",
+                        "/redirectAfterSuccessfulRegister.html").permitAll()
 
         //add /users here
                 .antMatchers("/").access("hasRole('ADMIN')")
 
                 .antMatchers("/notes", "/note/**", "/addNote", "/removeNote/**",
-                "/removeUser/**", "/addCollaboration/**", "/removeCollaboration/**","/collaborators/**",
-                "/noteAppStopmEndpoint/**", "/noteChanged", "/whoIsNotCollaborating/**"
-                ,"/addCollaborationByList/**" ,"/view/**").access("hasRole('USER')")
+                        "/removeUser/**", "/addCollaboration/**", "/removeCollaboration/**", "/collaborators/**",
+                        "/noteAppStopmEndpoint/**", "/noteChanged", "/whoIsNotCollaborating/**"
+                        , "/addCollaborationByList/**", "/view/**").access("hasRole('USER')")
 
                 .anyRequest().authenticated()
 
                 .and().formLogin()
                 .loginPage("/login")
                 .failureUrl("/login?error=1")
-                .defaultSuccessUrl("/view/main.html",true)
+                .defaultSuccessUrl("/view/main.html", true)
                 .permitAll()
 
                 .and().exceptionHandling().accessDeniedPage("/accessDenied")
@@ -96,7 +91,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
 
         //since the hole web based front-end in these project is using Ajax, we do not need csrf check.
-        //In fact, Cross-origin resource sharing (CORS) defend us against Ajax requests comming from non-native
+        //In fact, Cross-origin resource sharing (CORS) defend us against Ajax requests coming from non-native
         // origins.
                 .and().csrf().disable()
 

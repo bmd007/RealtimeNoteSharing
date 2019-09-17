@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
-import ir.tiroon.fanavard.q2.monolith.model.event.NoteChangedEvent
 import org.hibernate.annotations.Proxy
 
 import javax.persistence.*
@@ -35,7 +34,7 @@ class Note implements Serializable {
     @JoinTable(name = "collaborations",
             joinColumns = @JoinColumn(name = "noteId"),
             inverseJoinColumns = @JoinColumn(name = "phoneNumber")
-        )
+    )
     Set<User> collaborators = new HashSet<>()
 
 
@@ -49,7 +48,7 @@ class Note implements Serializable {
         this.collaborators = collaborators
     }
 
-    Note(String label,String text,User owner) {
+    Note(String label, String text, User owner) {
         this.label = label
         this.text = text
         this.owner = owner
